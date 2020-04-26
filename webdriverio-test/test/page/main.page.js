@@ -147,7 +147,7 @@ class MainPage {
   ////////// click on avatar /////////
   get ExploreClick() {
     return $(
-      '[class="js-selected-navigation-item Header-link  mr-0 mr-lg-3 py-2 py-lg-0 border-top border-lg-top-0 border-white-fade-15"][href="/explore"]'
+      '[class="js-selected-navigation-item Header-link py-lg-3  mr-0 mr-lg-3 py-2 border-top border-lg-top-0 border-white-fade-15"][href="/explore"]'
     );
   }
   clickExplore() {
@@ -210,7 +210,7 @@ class MainPage {
   get WhyGithubDropdown() {
     return $("//*[contains(text(),'Why GitHub?')]");
   }
-  ClickWhyGithubDropdownButton() {
+  clickWhyGithubDropdownButton() {
     this.WhyGithubDropdown.click();
   }
 
@@ -218,7 +218,7 @@ class MainPage {
   get PricingDropdownButton() {
     return $("//header//*[contains(text(),'Pricing')]");
   }
-  ClickPricingDropdownButton() {
+  clickPricingDropdownButton() {
     this.PricingDropdownButton.click();
   }
   get PlansButton() {
@@ -233,7 +233,7 @@ class MainPage {
   get ExploreButton() {
     return $("//summary[contains(text(),'Explore')]");
   }
-  ClickExploreButton() {
+  clickExploreButton() {
     this.ExploreButton.click();
   }
 

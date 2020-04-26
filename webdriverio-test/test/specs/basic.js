@@ -117,8 +117,8 @@ describe("webdriver.io page", () => {
     browser.url("https://github.com/");
     browser.pause(2000);
     browser.maximizeWindow();
-    mainPage.ClickWhyGithubDropdownButton();
-    mainPage.ClickWhyGithubDropdownButton();
+    mainPage.clickWhyGithubDropdownButton();
+    mainPage.clickWhyGithubDropdownButton();
     browser.pause(2000);
     console.log(
       "Is dropdown Why Githubdisplayed? :" +
@@ -131,7 +131,7 @@ describe("webdriver.io page", () => {
   ////// test Explore dropdown button /////
 
   it("should test isDisplayed Explore dropdown menu", () => {
-    mainPage.ClickExploreButton();
+    mainPage.clickExploreButton();
     browser.pause(2000);
     console.log(
       "Is dropdown Explore displayed? :" +
@@ -144,7 +144,7 @@ describe("webdriver.io page", () => {
 
   //// test Plans dropdown + going to Join Free /////
   it("should click on Plans from Pricing dropdown", () => {
-    mainPage.ClickPricingDropdownButton();
+    mainPage.clickPricingDropdownButton();
     browser.pause(2000);
     console.log(
       "Is dropdown Pricing displayed? :" +
@@ -175,8 +175,8 @@ describe("webdriver.io page", () => {
     browser.url("https://github.com/");
     browser.pause(2000);
     browser.maximizeWindow();
-    mainPage.ClickExploreButton();
-    mainPage.ClickExploreButton();
+    mainPage.clickExploreButton();
+    mainPage.clickExploreButton();
     browser.pause(2000);
     mainPage.ClickExploreGithubButton();
     browser.pause(2000);
@@ -264,7 +264,6 @@ describe("webdriver.io page", () => {
     browser.pause(2000);
   });
 });
-
 /*xit("should open API page", () => {
     browser.url("https://webdriver.io");
     apiPage.clickApiPage();
