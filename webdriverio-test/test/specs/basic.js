@@ -9,259 +9,172 @@ const explorePage = require("../page/explore.page.js");
 const webdriverioPage = require("../page/webdriverio.page.js");
 const enterprisePage = require("../page/enterprise.page.js");
 const careersPage = require("../page/careers.page.js");
+
 describe("webdriver.io page", () => {
-  it("should open github page and SignUp", () => {
-    browser.url("https://github.com/");
-    browser.pause(2000);
+  beforeEach(function it() {
+    do {
+      browser.url("https://github.com/");
+      browser.deleteCookies();
+    } while ($('[class="rounded-1 text-gray bg-gray-light py-4 px-4 px-md-3 px-lg-4"]').isDisplayed() === false);
     browser.maximizeWindow();
-    browser.pause(2000);
-    mainPage.randomUserNameInput();
-    browser.pause(2000);
-    mainPage.randomEmailInput();
-    browser.pause(2000);
-    mainPage.randomPasswordInput();
-    browser.pause(2000);
-    mainPage.clickSignUpButton();
   });
 
-  it("should get url and equal it", () => {
-    let URL = browser.getUrl();
-    assert(URL === "https://github.com/join");
-    browser.pause(2000);
-    console.log("Is current url equal expected url? :" + URL);
-    browser.pause(2000);
-    mainPage.IsVerifyItemDisplayed();
+  it("should open github page and SignUp", () => {
+    mainPage.randomUserNameInput();
+    mainPage.randomEmailInput();
+    mainPage.randomPasswordInput();
+    mainPage.clickSignUpButton();
+    expect(browser).toHaveUrl("https://github.com/join");
   });
 
   it("should open github page and SignUp from footed", () => {
-    browser.url("https://github.com/");
-    browser.pause(2000);
-    browser.maximizeWindow();
-    browser.pause(2000);
     mainPage.randomUserNameInput2();
-    browser.pause(2000);
     mainPage.randomEmailInput2();
-    browser.pause(2000);
     mainPage.randomPasswordInput2();
-    browser.pause(2000);
     mainPage.clickSignUpButton2();
+    expect(browser).toHaveUrl("https://github.com/join");
   });
 
   it("should open github page and SignIn with test account", () => {
-    browser.url("https://github.com/");
-    browser.pause(2000);
-    browser.maximizeWindow();
-    browser.pause(2000);
     mainPage.clickSignInButton();
-    browser.pause(2000);
     mainPage.UserNameInput();
-    browser.pause(2000);
     mainPage.PasswordInput();
-    browser.pause(2000);
     mainPage.clickSignInButton2();
-    browser.pause(2000);
     mainPage.clickExplore();
-    mainPage.IsUserNameDisplayed();
-    browser.pause(2000);
+    const userNameItem = $('[class="d-block f3 text-gray text-normal"]');
+    expect(userNameItem).toBeDisplayed();
     mainPage.clickDropdownUserMenu();
-    browser.pause(2000);
     mainPage.clickSignOutButton();
   });
 
   it("should test forgot password with empty email field", () => {
-    browser.url("https://github.com/");
-    browser.pause(2000);
-    browser.maximizeWindow();
-    browser.pause(2000);
     mainPage.clickSignInButton();
-    browser.pause(2000);
     mainPage.ClickForgotPasswordButton();
-    browser.pause(2000);
     mainPage.ClickSendPasswordButton();
-    browser.pause(2000);
+    const resetPasswordError = $('[class= "container-lg px-2"]');
+    expect(resetPasswordError).toBeDisplayed();
   });
 
   it("should test forgot password with incorrect email field", () => {
-    browser.url("https://github.com/");
-    browser.pause(2000);
-    browser.maximizeWindow();
-    browser.pause(2000);
     mainPage.clickSignInButton();
-    browser.pause(2000);
     mainPage.ClickForgotPasswordButton();
-    browser.pause(2000);
     mainPage.ClickEmailField();
     mainPage.InputIncorrectEmail();
-    browser.pause(2000);
     mainPage.ClickSendPasswordButton();
-    browser.pause(2000);
+    const resetPasswordError = $('[class= "container-lg px-2"]');
+    expect(resetPasswordError).toBeDisplayed();
   });
 
   it("should test forgot password with correct email field", () => {
-    browser.url("https://github.com/");
-    browser.pause(2000);
-    browser.maximizeWindow();
-    browser.pause(2000);
     mainPage.clickSignInButton();
-    browser.pause(2000);
     mainPage.ClickForgotPasswordButton();
-    browser.pause(2000);
     mainPage.ClickEmailField();
     mainPage.InputCorrectEmail();
-    browser.pause(2000);
     mainPage.ClickSendPasswordButton();
-    browser.pause(2000);
+    const checkEmailMessage = $('[class= "mt-0"]');
+    expect(checkEmailMessage).toBeDisplayed();
   });
 
   it("should test isDisplayed Why GitHub dropdown menu", () => {
-    browser.url("https://github.com/");
-    browser.pause(2000);
-    browser.maximizeWindow();
     mainPage.clickWhyGithubDropdownButton();
     mainPage.clickWhyGithubDropdownButton();
-    browser.pause(2000);
-    console.log(
-      "Is dropdown Why Githubdisplayed? :" +
-        $(
-          '[class="dropdown-menu flex-auto rounded-1 bg-white px-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]'
-        ).isDisplayed()
+    const whyGithubDropdown = $(
+      '[class="dropdown-menu flex-auto rounded-1 bg-white px-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]'
     );
+    expect(whyGithubDropdown).toBeDisplayed();
   });
 
   ////// test Explore dropdown button /////
 
   it("should test isDisplayed Explore dropdown menu", () => {
+    mainPage.clickWhyGithubDropdownButton();
+    mainPage.clickWhyGithubDropdownButton();
     mainPage.clickExploreButton();
-    browser.pause(2000);
-    console.log(
-      "Is dropdown Explore displayed? :" +
-        $(
-          '[class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]'
-        ).isDisplayed()
+    const exploreDropdown = $(
+      '[class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]'
     );
-    browser.pause(2000);
+    expect(exploreDropdown).toBeDisplayed();
   });
 
   //// test Plans dropdown + going to Join Free /////
   it("should click on Plans from Pricing dropdown", () => {
     mainPage.clickPricingDropdownButton();
-    browser.pause(2000);
-    console.log(
-      "Is dropdown Pricing displayed? :" +
-        $(
-          '[class= "dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-4 mt-0 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]'
-        ).isDisplayed()
+    mainPage.clickPricingDropdownButton();
+    const pricingButton = $(
+      '[class= "dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-4 mt-0 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]'
     );
-    browser.pause(2000);
+    expect(pricingButton).toBeDisplayed();
     mainPage.ClickPlansButton();
   });
 
   //// подвязка под предыдущий тест, начинается со страницы Планов и переходит на JoinFree ////
 
   it("should JoinFree and fill out all fields", () => {
-    browser.pause(2000);
+    mainPage.clickPricingDropdownButton();
+    mainPage.clickPricingDropdownButton();
+    mainPage.ClickPlansButton();
     plansPage.ClickJoinFreeButton();
-    browser.pause(2000);
     plansPage.randomUserNameInputPricing();
-    browser.pause(2000);
     plansPage.randomEmailInputPricing();
-    browser.pause(2000);
     plansPage.randomPasswordInputPricing();
-    browser.pause(2000);
     plansPage.clickCreateAccountButton();
+    expect(browser).toHaveUrl("https://github.com/join?plan=free");
   });
 
   it("should open Explore dropdown list and navigate to Explore Github -> Topics -> Say, that Topics isDisplayed", () => {
-    browser.url("https://github.com/");
-    browser.pause(2000);
-    browser.maximizeWindow();
     mainPage.clickExploreButton();
-    mainPage.clickExploreButton();
-    browser.pause(2000);
     mainPage.ClickExploreGithubButton();
-    browser.pause(2000);
     explorePage.ClickTopicsButton();
-    browser.pause(2000);
-    explorePage.IsTopicsArticleDisplayed();
+    const topicsArticle = $('[class= "h0-mktg"]');
+    expect(topicsArticle).toBeDisplayed();
   });
 
   ///// начинает нырять через строку поиска глубже в лес /////
   it("should input text in Searchbar and find type script", () => {
-    browser.url("https://github.com/");
-    browser.pause(2000);
-    browser.maximizeWindow();
-    browser.pause(2000);
     mainPage.AddValueToSearchInputField();
-    browser.pause(2000);
     mainPage.ClickSearchButton();
-    browser.pause(2000);
     webdriverioPage.ClickTypeScriptButton();
-    browser.pause(2000);
     webdriverioPage.ClickIgniteramField();
-    let URL = browser.getUrl();
-    assert(
-      URL === "https://github.com/igniteram/appium-webdriverio-typescript"
+    browser.getUrl();
+    expect(browser).toHaveUrl(
+      "https://github.com/igniteram/appium-webdriverio-typescript"
     );
-    browser.pause(2000);
-    console.log("Is url has webdriverio text? :" + URL);
-    browser.pause(2000);
   });
 
   it("should start free trial at Enterprise page", () => {
-    browser.url("https://github.com/enterprise");
-    browser.pause(2000);
-    browser.maximizeWindow();
+    enterprisePage.clickEnterpriseTopButton();
     enterprisePage.ClickStartFreeTrialButton();
-    browser.pause(2000);
     enterprisePage.ClickEnterpriseCloudButton();
-    browser.pause(2000);
     enterprisePage.randomUserNameEnterpriseInput();
-    browser.pause(2000);
     enterprisePage.randomEmailEnterpriseInput();
-    browser.pause(2000);
     enterprisePage.randomPasswordEnterpriseInput();
-    browser.pause(2000);
     enterprisePage.clickCreateAccountEnterprise();
-    browser.pause(2000);
-  });
-
-  it("should start free trial at EnterpriseServer page", () => {
     browser.back();
-    browser.pause(2000);
     browser.back();
-    browser.pause(2000);
     enterprisePage.ClickEnterpriseServerButton();
-    browser.pause(2000);
     enterprisePage.randomUserNameEnterpriseServerInput();
-    browser.pause(2000);
     enterprisePage.randomCompanyNameEnterpriseServerInput();
-    browser.pause(2000);
     enterprisePage.randomEmailEnterpriseServerInput();
-    browser.pause(2000);
     enterprisePage.randomCompanyPhoneNumberInput();
-    browser.pause(2000);
     enterprisePage.clickMicrosoftAzuteButton();
-    browser.pause(2000);
     enterprisePage.clickYesRadiobutton();
-    browser.pause(2000);
     enterprisePage.AddValueQField();
-    browser.pause(2000);
     enterprisePage.ClickAcceptTermsButton();
-    browser.pause(2000);
     enterprisePage.clickCreateAccountEnterpriseServer();
-    browser.pause(2000);
+    expect(
+      browser
+    ).toHaveUrl(
+      "https://enterprise.github.com/trial?source=pricing-card-enterprise",
+      { containing: true }
+    );
   });
 
   it("should go to footer -> careers-> open position and log all lables", () => {
-    browser.url("https://github.com/");
-    browser.pause(2000);
-    browser.maximizeWindow();
     mainPage.clickCareersButton();
-    browser.pause(2000);
     careersPage.clickOpenPositionsButton();
-    browser.pause(2000);
     careersPage.ConsoleLogAllOpenPositions();
-    browser.pause(2000);
+    const careersPositions = $('[class= "pb-md-6"]');
+    expect(careersPositions).toBeDisplayed();
   });
 });
 /*xit("should open API page", () => {

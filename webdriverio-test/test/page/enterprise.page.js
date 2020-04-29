@@ -5,6 +5,17 @@ class EnterprisePage {
   ClickStartFreeTrialButton() {
     this.StartFreeTrialButton.click();
   }
+
+  get EnterpriseTopButton() {
+    return $(
+      '[class="HeaderMenu-link no-underline py-3 d-block d-lg-inline-block"][data-ga-click="(Logged out) Header, go to Enterprise"]'
+    );
+  }
+  clickEnterpriseTopButton() {
+    this.EnterpriseTopButton.moveTo();
+    this.EnterpriseTopButton.click();
+  }
+
   get EnterpriseCloudButton() {
     return $(
       '[class="currency-container col-12 signup-plan-column js-details-container mr-sm-2 "]'

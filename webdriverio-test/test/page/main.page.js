@@ -59,10 +59,8 @@ class MainPage {
   }
 
   IsVerifyItemDisplayed() {
-    console.log(
-      "Is Verify text displayed :" +
-        $("//*[contains(text(),'Verify your account')]").isDisplayed()
-    );
+    const elem = $("//*[contains(text(),'Verify your account')]");
+    expect(elem).toBeDisplayed();
   }
 
   ////////////////////////  footer registarion /////////////////////
@@ -206,12 +204,15 @@ class MainPage {
   }
 
   ////////////// Выпадающиее элементы на главной странице ///////////
-
+  get freeSpace() {
+    return $('[class="py-6 py-sm-8 jumbotron-codelines"]');
+  }
   get WhyGithubDropdown() {
     return $("//*[contains(text(),'Why GitHub?')]");
   }
   clickWhyGithubDropdownButton() {
-    this.WhyGithubDropdown.click();
+    this.freeSpace.moveTo();
+    this.WhyGithubDropdown.moveTo();
   }
 
   ////////// Выпадающее меню Pricing //////////////
@@ -219,7 +220,8 @@ class MainPage {
     return $("//header//*[contains(text(),'Pricing')]");
   }
   clickPricingDropdownButton() {
-    this.PricingDropdownButton.click();
+    this.freeSpace.moveTo();
+    this.PricingDropdownButton.moveTo();
   }
   get PlansButton() {
     return $(
@@ -234,7 +236,8 @@ class MainPage {
     return $("//summary[contains(text(),'Explore')]");
   }
   clickExploreButton() {
-    this.ExploreButton.click();
+    this.freeSpace.moveTo();
+    this.ExploreButton.moveTo();
   }
 
   get ExploreGithubButton() {
@@ -268,5 +271,10 @@ class MainPage {
     this.CareersButton.scrollIntoView();
     this.CareersButton.click();
   }
+
+  /*registrationMenuAvailable() {
+    do (browser.reloadSession()) 
+    while ($('[class="rounded-1 text-gray bg-gray-light py-4 px-4 px-md-3 px-lg-4"]').isDisplayed() == false);
+  } */
 }
 module.exports = new MainPage();
