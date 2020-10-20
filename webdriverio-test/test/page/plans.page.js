@@ -1,7 +1,7 @@
 class PlansPage {
   get JoinFreeButton() {
     return $(
-      '[class="btn-block btn-mktg h4-mktg"][data-ga-click="Pricing topcarousel, click, text:Join for free; card:Free; ref_page:Pricing"]'
+      '[class="btn-block btn-mktg h4-mktg"][data-ga-click="Sign up, click to sign up for account, ref_page:/pricing;ref_cta:Join for free;ref_loc:topcarousel"]'
     );
   }
   ClickJoinFreeButton() {

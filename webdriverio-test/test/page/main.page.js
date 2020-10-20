@@ -43,7 +43,7 @@ class MainPage {
 
   get SignUpButton() {
     return $(
-      '[class="btn-mktg btn-primary-mktg btn-large-mktg f4 btn-block my-3 js-add-experiment-labels-to-ga-click"]'
+      '[class="btn-mktg btn-primary-mktg btn-large-mktg f4 btn-block my-3"]'
     );
   }
   clickSignUpButton() {
@@ -145,7 +145,7 @@ class MainPage {
   ////////// click on avatar /////////
   get ExploreClick() {
     return $(
-      '[class="js-selected-navigation-item Header-link py-lg-3  mr-0 mr-lg-3 py-2 border-top border-lg-top-0 border-white-fade-15"][href="/explore"]'
+      '[class="js-selected-navigation-item Header-link mt-md-n3 mb-md-n3 py-2 py-md-3 mr-0 mr-md-3 border-top border-md-top-0 border-white-fade-15"][href="/explore"]'
     );
   }
   clickExplore() {
@@ -277,4 +277,5 @@ class MainPage {
     while ($('[class="rounded-1 text-gray bg-gray-light py-4 px-4 px-md-3 px-lg-4"]').isDisplayed() == false);
   } */
 }
+
 module.exports = new MainPage();

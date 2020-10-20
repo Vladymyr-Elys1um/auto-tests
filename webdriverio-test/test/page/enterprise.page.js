@@ -1,6 +1,6 @@
 class EnterprisePage {
   get StartFreeTrialButton() {
-    return $('[class="btn-mktg btn-large-mktg mb-2"]');
+    return $('[class="btn-mktg-fluid btn-white-outline-mktg-fluid"]');
   }
   ClickStartFreeTrialButton() {
     this.StartFreeTrialButton.click();
@@ -18,7 +18,7 @@ class EnterprisePage {
 
   get EnterpriseCloudButton() {
     return $(
-      '[class="currency-container col-12 signup-plan-column js-details-container mr-sm-2 "]'
+      '//label//*[contains(text(),"Enterprise Cloud")]'
     );
   }
   ClickEnterpriseCloudButton() {
@@ -139,10 +139,17 @@ class EnterprisePage {
   }
 
   get AcceptTermsButton() {
-    return $("#contact_request_agreed_to_terms");
+    return $('[id="agree_to_terms"]');
   }
   ClickAcceptTermsButton() {
     this.AcceptTermsButton.click();
+  }
+
+  get AcceptLicenseAggreement() {
+    return $('[class="btn-mktg py-2 px-4 js-tou-agree ml-2"]');
+  }
+  ClickAcceptLicenseAggrementBtn() {
+    this.AcceptLicenseAggreement.click();
   }
 
   get CreateAccountServerButton() {

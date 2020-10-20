@@ -15,7 +15,8 @@ describe("webdriver.io page", () => {
     do {
       browser.url("https://github.com/");
       browser.deleteCookies();
-    } while ($('[class="rounded-1 text-gray bg-gray-light py-4 px-4 px-md-3 px-lg-4"]').isDisplayed() === false);
+    } while ($('[class="rounded-1 text-gray bg-gray-light py-4 px-4 px-md-3 px-lg-4"]')
+      .isDisplayed() === false);
     browser.maximizeWindow();
   });
 
@@ -84,7 +85,7 @@ describe("webdriver.io page", () => {
     expect(whyGithubDropdown).toBeDisplayed();
   });
 
-  ////// test Explore dropdown button /////
+  // ////// test Explore dropdown button /////
 
   it("should test isDisplayed Explore dropdown menu", () => {
     mainPage.clickWhyGithubDropdownButton();
@@ -96,7 +97,7 @@ describe("webdriver.io page", () => {
     expect(exploreDropdown).toBeDisplayed();
   });
 
-  //// test Plans dropdown + going to Join Free /////
+  // //// test Plans dropdown + going to Join Free /////
   it("should click on Plans from Pricing dropdown", () => {
     mainPage.clickPricingDropdownButton();
     mainPage.clickPricingDropdownButton();
@@ -107,7 +108,7 @@ describe("webdriver.io page", () => {
     mainPage.ClickPlansButton();
   });
 
-  //// подвязка под предыдущий тест, начинается со страницы Планов и переходит на JoinFree ////
+  // //// подвязка под предыдущий тест, начинается со страницы Планов и переходит на JoinFree ////
 
   it("should JoinFree and fill out all fields", () => {
     mainPage.clickPricingDropdownButton();
@@ -117,8 +118,8 @@ describe("webdriver.io page", () => {
     plansPage.randomUserNameInputPricing();
     plansPage.randomEmailInputPricing();
     plansPage.randomPasswordInputPricing();
-    plansPage.clickCreateAccountButton();
-    expect(browser).toHaveUrl("https://github.com/join?plan=free");
+    // plansPage.clickCreateAccountButton();
+    expect(browser).toHaveUrl("https://github.com/join?plan=free&ref_cta=Join%2520for%2520free&ref_loc=topcarousel&ref_page=%2Fpricing&source=pricing-card-free");
   });
 
   it("should open Explore dropdown list and navigate to Explore Github -> Topics -> Say, that Topics isDisplayed", () => {
@@ -129,7 +130,7 @@ describe("webdriver.io page", () => {
     expect(topicsArticle).toBeDisplayed();
   });
 
-  ///// начинает нырять через строку поиска глубже в лес /////
+  // ///// начинает нырять через строку поиска глубже в лес /////
   it("should input text in Searchbar and find type script", () => {
     mainPage.AddValueToSearchInputField();
     mainPage.ClickSearchButton();
@@ -148,9 +149,10 @@ describe("webdriver.io page", () => {
     enterprisePage.randomUserNameEnterpriseInput();
     enterprisePage.randomEmailEnterpriseInput();
     enterprisePage.randomPasswordEnterpriseInput();
-    enterprisePage.clickCreateAccountEnterprise();
+    // enterprisePage.clickCreateAccountEnterprise();
     browser.back();
     browser.back();
+    enterprisePage.ClickStartFreeTrialButton();
     enterprisePage.ClickEnterpriseServerButton();
     enterprisePage.randomUserNameEnterpriseServerInput();
     enterprisePage.randomCompanyNameEnterpriseServerInput();
@@ -160,23 +162,29 @@ describe("webdriver.io page", () => {
     enterprisePage.clickYesRadiobutton();
     enterprisePage.AddValueQField();
     enterprisePage.ClickAcceptTermsButton();
-    enterprisePage.clickCreateAccountEnterpriseServer();
+    enterprisePage.ClickAcceptLicenseAggrementBtn();
+    // enterprisePage.clickCreateAccountEnterpriseServer();
     expect(
       browser
     ).toHaveUrl(
-      "https://enterprise.github.com/trial?source=pricing-card-enterprise",
+      "https://enterprise.github.com/trial?ref_cta=Start+a+free+trial&ref_loc=hero&ref_page=%2Fenterprise&source=pricing-card-enterprise",
       { containing: true }
     );
   });
 
-  it("should go to footer -> careers-> open position and log all lables", () => {
-    mainPage.clickCareersButton();
-    careersPage.clickOpenPositionsButton();
-    careersPage.ConsoleLogAllOpenPositions();
-    const careersPositions = $('[class= "pb-md-6"]');
-    expect(careersPositions).toBeDisplayed();
-  });
+  // it("should go to footer -> careers-> open position and log all lables", () => {
+  //   mainPage.clickCareersButton();
+  //   careersPage.clickOpenPositionsButton();
+  //   careersPage.ConsoleLogAllOpenPositions();
+  //   const careersPositions = $('[class= "pb-md-6"]');
+  //   expect(careersPositions).toBeDisplayed();
+  // });
 });
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
 /*xit("should open API page", () => {
     browser.url("https://webdriver.io");
     apiPage.clickApiPage();
