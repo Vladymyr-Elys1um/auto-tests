@@ -1,2 +1,2 @@
 # auto-tests
-JavaScript autotests for WebDriver website
+JavaScript autotests (WebDriverIO) for github website
