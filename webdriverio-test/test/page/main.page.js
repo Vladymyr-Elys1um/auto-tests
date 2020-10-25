@@ -1,3 +1,4 @@
+const helper = require("../helper/helper.js");
 class MainPage {
   get searchInput() {
     return $("#search_input_react");
@@ -14,9 +15,7 @@ class MainPage {
   }
   randomEmailInput() {
     this.emailTextBx.click();
-    this.emailTextBx.addValue(
-      "Username" + Math.floor(Math.random() * 100000) + "@gmail.com"
-    );
+    this.emailTextBx.addValue(helper.createRandomUserMail());
   }
 
   get userNameBx() {
@@ -26,7 +25,7 @@ class MainPage {
   }
   randomUserNameInput() {
     this.userNameBx.click();
-    this.userNameBx.addValue("Username" + Math.floor(Math.random() * 100000));
+    this.userNameBx.addValue(helper.createRandomUserName());
   }
 
   get passwordBx() {
@@ -36,18 +35,16 @@ class MainPage {
   }
   randomPasswordInput() {
     this.passwordBx.click();
-    this.passwordBx.addValue(
-      "Username" + Math.floor(Math.random() * 100000) + "@gmail.com"
-    );
+    this.passwordBx.addValue(helper.createRandomUserMail());
   }
 
-  get SignUpButton() {
+  get signUpButton() {
     return $(
       '[class="btn-mktg btn-primary-mktg btn-large-mktg f4 btn-block my-3"]'
     );
   }
   clickSignUpButton() {
-    this.SignUpButton.click();
+    this.signUpButton.click();
   }
 
   ///////////////// URL is equal? /////////////
@@ -72,9 +69,7 @@ class MainPage {
   }
   randomEmailInput2() {
     this.emailTextBx2.click();
-    this.emailTextBx2.addValue(
-      "Username" + Math.floor(Math.random() * 100000) + "@gmail.com"
-    );
+    this.emailTextBx2.addValue(helper.createRandomUserMail());
   }
 
   get userNameBx2() {
@@ -85,7 +80,7 @@ class MainPage {
   randomUserNameInput2() {
     this.userNameBx2.scrollIntoView();
     this.userNameBx2.click();
-    this.userNameBx2.addValue("Username" + Math.floor(Math.random() * 100000));
+    this.userNameBx2.addValue(helper.createRandomUserName());
   }
 
   get passwordBx2() {
@@ -95,9 +90,7 @@ class MainPage {
   }
   randomPasswordInput2() {
     this.passwordBx2.click();
-    this.passwordBx2.addValue(
-      "Username" + Math.floor(Math.random() * 100000) + "@gmail.com"
-    );
+    this.passwordBx2.addValue(helper.createRandomUserMail());
   }
 
   get SignUpButton2() {
@@ -165,13 +158,6 @@ class MainPage {
     this.SignOutButton.click();
   }
 
-  ///////// isDisplayed user name? ///////////
-  IsUserNameDisplayed() {
-    console.log(
-      "Is user name displayed? :" +
-        $('[class="d-block f3 text-gray text-normal"]').isDisplayed()
-    );
-  }
   ////////// forgot passwor /////////
   get ForgotPasswordButton() {
     return $("//*[contains(text(),'Forgot password?')]");
@@ -276,6 +262,41 @@ class MainPage {
     do (browser.reloadSession()) 
     while ($('[class="rounded-1 text-gray bg-gray-light py-4 px-4 px-md-3 px-lg-4"]').isDisplayed() == false);
   } */
+  getPricingButton() {
+    return $(
+      '[class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-4 mt-0 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]'
+    );
+  }
+
+  getExploreDropdown() {
+    return $(
+      '[class="dropdown-menu flex-auto rounded-1 bg-white px-0 pt-2 pb-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]'
+    );
+  }
+
+  getWhyGithubDropdown() {
+    return $(
+      '[class="dropdown-menu flex-auto rounded-1 bg-white px-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4"]'
+    );
+  }
+
+  getCheckEmailMessage() {
+    return $('[class="mt-0"]');
+  }
+
+  getResetPasswordError() {
+    return $('[class="container-lg px-2"]');
+  }
+
+  getUserNameItem() {
+    return $('[class="d-block f3 text-gray text-normal"]');
+  }
+
+  getBrokenPage() {
+    return $(
+      '[class="rounded-1 text-gray bg-gray-light py-4 px-4 px-md-3 px-lg-4"]'
+    );
+  }
 }
 
 module.exports = new MainPage();

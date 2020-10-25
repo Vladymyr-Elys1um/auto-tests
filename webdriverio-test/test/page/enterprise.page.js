@@ -1,3 +1,6 @@
+// import { createRandomUserName, createRandomUserMail } from "../helper/helper.js";
+const helper = require("../helper/helper.js");
+
 class EnterprisePage {
   get StartFreeTrialButton() {
     return $('[class="btn-mktg-fluid btn-white-outline-mktg-fluid"]');
@@ -17,9 +20,7 @@ class EnterprisePage {
   }
 
   get EnterpriseCloudButton() {
-    return $(
-      '//label//*[contains(text(),"Enterprise Cloud")]'
-    );
+    return $('//label//*[contains(text(),"Enterprise Cloud")]');
   }
   ClickEnterpriseCloudButton() {
     this.EnterpriseCloudButton.click();
@@ -39,9 +40,7 @@ class EnterprisePage {
   }
   randomUserNameEnterpriseInput() {
     this.userNameEnterprise.click();
-    this.userNameEnterprise.addValue(
-      "Username" + Math.floor(Math.random() * 100000)
-    );
+    this.userNameEnterprise.addValue(helper.createRandomUserName());
   }
 
   get emailTextEnteprise() {
@@ -49,9 +48,7 @@ class EnterprisePage {
   }
   randomEmailEnterpriseInput() {
     this.emailTextEnteprise.click();
-    this.emailTextEnteprise.addValue(
-      "Username" + Math.floor(Math.random() * 100000) + "@gmail.com"
-    );
+    this.emailTextEnteprise.addValue(helper.createRandomUserMail());
   }
 
   get passwordEnterprise() {
@@ -59,9 +56,7 @@ class EnterprisePage {
   }
   randomPasswordEnterpriseInput() {
     this.passwordEnterprise.click();
-    this.passwordEnterprise.addValue(
-      "Username" + Math.floor(Math.random() * 100000)
-    );
+    this.passwordEnterprise.addValue(helper.createRandomUserName());
   }
 
   get CreateAccountEnterpriseButton() {
@@ -80,9 +75,7 @@ class EnterprisePage {
   }
   randomUserNameEnterpriseServerInput() {
     this.userNameEnterpriseServer.click();
-    this.userNameEnterpriseServer.addValue(
-      "Username" + Math.floor(Math.random() * 100000)
-    );
+    this.userNameEnterpriseServer.addValue(helper.createRandomUserName());
   }
 
   get emailTextEntepriseServer() {
@@ -90,9 +83,7 @@ class EnterprisePage {
   }
   randomEmailEnterpriseServerInput() {
     this.emailTextEntepriseServer.click();
-    this.emailTextEntepriseServer.addValue(
-      "Username" + Math.floor(Math.random() * 100000) + "@gmail.com"
-    );
+    this.emailTextEntepriseServer.addValue(helper.createRandomUserMail());
   }
 
   get CompanyNameEnterpriseServer() {

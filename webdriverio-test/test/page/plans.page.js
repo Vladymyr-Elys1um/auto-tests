@@ -1,3 +1,5 @@
+const helper = require("../helper/helper.js");
+
 class PlansPage {
   get JoinFreeButton() {
     return $(
@@ -15,9 +17,7 @@ class PlansPage {
   }
   randomUserNameInputPricing() {
     this.userNamePricing.click();
-    this.userNamePricing.addValue(
-      "Username" + Math.floor(Math.random() * 100000)
-    );
+    this.userNamePricing.addValue(helper.createRandomUserName());
   }
 
   get emailTextPricing() {
@@ -25,9 +25,7 @@ class PlansPage {
   }
   randomEmailInputPricing() {
     this.emailTextPricing.click();
-    this.emailTextPricing.addValue(
-      "Username" + Math.floor(Math.random() * 100000) + "@gmail.com"
-    );
+    this.emailTextPricing.addValue(helper.createRandomUserMail());
   }
 
   get passwordPricing() {
@@ -35,9 +33,7 @@ class PlansPage {
   }
   randomPasswordInputPricing() {
     this.passwordPricing.click();
-    this.passwordPricing.addValue(
-      "Username" + Math.floor(Math.random() * 100000) + "@gmail.com"
-    );
+    this.passwordPricing.addValue(helper.createRandomUserMail());
   }
 
   get CreateAccoungButton() {
